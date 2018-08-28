@@ -13,6 +13,8 @@ int main(int argc, char **argv){
           printf("err msg: %s\n", e.to_detail_string().c_str());
           return 1;
 	}
+        printf("data: %s\n", data);
+        printf("prikey: %s\n", privkey);
         printf("signature: %s\n", sig);
 	return 0;
 }
