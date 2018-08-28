@@ -1,5 +1,5 @@
 #include "console_appender.hpp"
-#include "variant.cpp"
+#include "variant.hpp"
 #include "log_message.hpp"
 #include "string.hpp"
 #include "variant.hpp"

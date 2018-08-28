@@ -36,6 +36,7 @@ namespace fc { namespace crypto {
 
    signature private_key::sign( const sha256& digest, bool require_canonical ) const
    {
+	   printf("ss-sign: %s\n", std::string(digest).c_str());
       return signature(_storage.visit(sign_visitor(digest, require_canonical)));
    }
 
