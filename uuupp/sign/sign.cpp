@@ -16,7 +16,7 @@ int do_sign(const digest_type& digest, const char *prikey, char *sign_out)
     private_key_type pkey(str_prikey);
     std::string str_sig("");
     int itry_times = 1;
-    while(itry_times <= 1000){
+    while(itry_times <= 23){
       try{
     	signature_type sig = pkey.sign(digest);
     	str_sig = std::string(sig);

@@ -6,7 +6,8 @@
 int main(int argc, char **argv){
         char sig[100] = {'\0'};
 	char *data = "you and me";
-        char *privkey = "5KYZdUEo39z3FPrtuX2QbbwGnNP5zTd7yyr2SC1j299sBCnWjss";
+        // public key: EOS8Jwucnpgfxndtxycfv8JYraQHBvuHgr3Hn38VcdrQ7koDiBCmz
+        char *privkey = "5JneHPiz1Ci5yqjAMBcXgDVaecaXd9hSLSap3Aabj6C6M6vtWYv";
         try {
 	 sign(data, strlen(data), privkey, sig);
         } catch( const fc::exception& e ) {

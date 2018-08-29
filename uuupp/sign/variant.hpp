@@ -329,7 +329,7 @@ namespace fc
         T as()const
         {
            T tmp;
-           from_variant( *this, tmp );
+          // from_variant( *this, tmp );
            return tmp;
         }
 
@@ -558,7 +558,7 @@ namespace fc
    variant::variant( const T& val )
    {
       memset( this, 0, sizeof(*this) );
-      to_variant( val, *this );
+      //to_variant( val, *this );
    }
    #ifdef __APPLE__
    inline void to_variant( size_t s, variant& v ) { v = variant(uint64_t(s)); }
