@@ -1,7 +1,7 @@
 CC=clang++
 CFLAGS=-Wall -g -std=c++14 -I/usr/local/Cellar/openssl/1.0.2o_2/include 
 DYFLAGS=-shared -fPIC
-DEPS=-lcrypto -lssl -lstdc++ -lboost_system -lboost_filesystem -lboost_date_time -lsecp256k1 -lboost_chrono
+DEPS=-lcrypto -lstdc++ -lboost_system -lboost_filesystem -lboost_date_time -lsecp256k1 -lboost_chrono
 
 TARGET = libsign.so
  
