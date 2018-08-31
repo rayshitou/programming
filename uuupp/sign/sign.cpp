@@ -40,8 +40,15 @@ int sign(const char *data, unsigned int length, const char *prikey, char *sign_o
 int sign_hash(const char *hash, int length, const char *prikey, char *sign_out)
 {
     if( hash && prikey && length > 0 && sign_out ) {
-	const digest_type digest(hash, length);
-        return do_sign(digest, prikey, sign_out);
+	try{
+          std::string str_hash_hex(hash, length);
+	  char cstr_hash[32];
+	  std::size_t h_len = fc::from_hex(str_hash_hex, cstr_hash, 32);
+	  const digest_type digest(cstr_hash, h_len);
+          return do_sign(digest, prikey, sign_out);
+	} catch( const fc::exception& e ) {
+          printf("%s\n", e.to_detail_string().c_str());
+        }
     }
     return 0;
 }

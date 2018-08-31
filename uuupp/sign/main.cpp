@@ -17,5 +17,10 @@ int main(int argc, char **argv){
         printf("data: %s\n", data);
         printf("prikey: %s\n", privkey);
         printf("signature: %s\n", sig);
+
+	char *hash_hex = "96d44d64c1edac87cd54c156a172543893447f63fb7829bd302cd2217dbfcb23";
+	sign_hash(hash_hex, strlen(hash_hex), privkey, sig);
+        printf("\nhash: %s\n", hash_hex);
+        printf("signature: %s\n", sig);
 	return 0;
 }
