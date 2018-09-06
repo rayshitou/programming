@@ -1,0 +1,21 @@
+CC=g++
+CFLAGS=-Wall -g -std=c++14 -fPIC -I/usr/local/ssl/include -lstdc++
+DEPS=/usr/local/ssl/lib/libcrypto.a /usr/local/lib/libboost_system.a /usr/local/lib/libboost_filesystem.a /usr/local/lib/libboost_date_time.a /usr/local/lib/libboost_chrono.a
+
+TARGET = libsigns.a
+ 
+SRCS := $(wildcard *.cpp)  
+ 
+OBJS := $(patsubst %cpp, %o, $(SRCS))  
+ 
+all: $(TARGET)  
+ 
+$(TARGET): $(OBJS)  
+	ar rcs $@ $(DEPS) $^
+	ranlib $@
+%.o:%.cpp
+	$(CC) $(CFLAGS) -c $<
+ 
+clean:  
+	rm -f *.o $(TARGET) ss s2
+#g++ -o s2  -Wl,-static -L. -lsigns
