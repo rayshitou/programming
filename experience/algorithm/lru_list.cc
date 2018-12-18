@@ -42,6 +42,48 @@ class LinkedList {
 			head->next = p;
 		}
 
+		int FindMediumElem() {
+			Node * fast = head->next;
+			Node * slow = head->next;
+
+			while(fast) {
+				fast = fast->next;
+				if (fast) {
+				       	fast = fast->next;
+					slow = slow->next;
+				}
+			}
+
+			if(slow) return slow->data;
+			else return -1;
+		}
+
+		void DeleteNthByInvertedSeq(unsigned int Nth) {
+			Node * slow = head;
+			Node * fast = head;
+
+			for(unsigned int i = 0; i < Nth && fast; i++) {
+				fast = fast->next;
+			}
+
+			if(!fast || fast == head) { // fast == head, return when Nth = 0
+				cout << "the number is not validated, " << curNum << " elements in list for now." << endl;
+				return ;
+			}
+
+			while(fast->next) {
+				fast = fast->next;
+				slow = slow->next;
+			}
+
+			fast = slow->next;
+			slow->next = slow->next->next;
+			delete fast;
+			--curNum;
+			
+			ShowAll();
+		}
+
 		bool Get(int data) {
 			Node * p = head;
 			Node * pre = nullptr;
@@ -120,11 +162,11 @@ class LinkedList {
 };
 
 int main(int argc, char**argv) {
-	LinkedList ll(3);
+	LinkedList ll(9);
 	int data;
 	char cdo = 'a';
 	while(true) {
-		cout << "select action:[a|r|q]:  ";
+		cout << "select action:[a|r|d|f|q]:  ";
 		cin >> cdo;
 		if('a' == cdo) {
 			cout << "input elem with integer value: ";
@@ -134,6 +176,12 @@ int main(int argc, char**argv) {
 			cout << "reverse this link list as result:" << endl;
 			ll.Reverse();
 			ll.ShowAll();
+		} else if('d' == cdo) {
+			cout << "input the Nth by inverted sequence: ";
+			cin >> data;
+	       		ll.DeleteNthByInvertedSeq(data);
+		} else if('f' == cdo) {
+			cout << "the data of medium element is: " << ll.FindMediumElem() << endl;
 		} else if ('q' == cdo) {
 			cout << "PROGRAM EXIT." << endl;
 		       	break; 

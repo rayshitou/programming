@@ -6,7 +6,7 @@ CXX = g++
 CXXFLAGS = -g -O2 -D_REENTRANT -Wall -std=c++11
 
 PROGS = testexe
-OBJ = lru_link.o
+OBJ = lru_list.o
 
 all:    ${PROGS}
 
