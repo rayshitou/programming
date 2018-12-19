@@ -25,14 +25,19 @@ class LinkedList {
 			head->data = -1;
 		}
 
+		LinkedList(Node* first, int n = 3): curNum(0),cap(n) {
+		       	head =  new Node();
+			head->next = first;
+			head->data = -1;
+		}
+
 		~LinkedList() {
-			Node * p = head;
-			Node * cur = nullptr;
+			Node* p = nullptr;
 			do {
-				cur = p->next;
+				p = head;
+				head = head->next;
 				delete p;
-				p = cur;
-			} while(p); 
+			} while(head); 
 		}
 
 		void AddNode(int data) {
@@ -82,6 +87,10 @@ class LinkedList {
 			--curNum;
 			
 			ShowAll();
+		}
+
+		Node * Merge(const LinkedList& other) {
+			return MergeRecursive(this->head->next, other.head->next);	
 		}
 
 		bool Get(int data) {
@@ -138,6 +147,21 @@ class LinkedList {
 			head->next = pre;
 		}
 	private:
+		Node* MergeRecursive(Node* head1, Node* head2) {
+			if(head1 == nullptr) return head2;
+			else if(head2 == nullptr) return head1;
+
+			Node* mergedHead = nullptr;
+			if(head1->data > head2->data) {
+				mergedHead = head1;
+				mergedHead->next = MergeRecursive(head1->next, head2);
+			} else {
+				mergedHead = head2;
+				mergedHead->next = MergeRecursive(head1, head2->next);
+			}
+			return mergedHead;
+		}
+
 		void LRU(Node* pre, Node* cur) {
 			pre->next = cur->next;
 			cur->next = head->next;
@@ -162,11 +186,25 @@ class LinkedList {
 };
 
 int main(int argc, char**argv) {
+	LinkedList l1(7);
+	l1.AddNode(3);
+	l1.AddNode(13);
+	l1.AddNode(20);
+	l1.AddNode(33);
+	l1.AddNode(33);
+	l1.AddNode(53);
+	l1.AddNode(83);
+	LinkedList l2(5);
+	l2.AddNode(1);
+	l2.AddNode(5);
+	l2.AddNode(23);
+	l2.AddNode(83);
+	l2.AddNode(99);
 	LinkedList ll(9);
 	int data;
 	char cdo = 'a';
 	while(true) {
-		cout << "select action:[a|r|d|f|q]:  ";
+		cout << "select action:[a|r|d|f|m|q]:  ";
 		cin >> cdo;
 		if('a' == cdo) {
 			cout << "input elem with integer value: ";
@@ -182,6 +220,12 @@ int main(int argc, char**argv) {
 	       		ll.DeleteNthByInvertedSeq(data);
 		} else if('f' == cdo) {
 			cout << "the data of medium element is: " << ll.FindMediumElem() << endl;
+		} else if ('m' == cdo) {
+			Node* first = l1.Merge(l2);
+			LinkedList mergedLink(first);
+			mergedLink.ShowAll();
+			l1.ShowAll();
+			l2.ShowAll();
 		} else if ('q' == cdo) {
 			cout << "PROGRAM EXIT." << endl;
 		       	break; 
