@@ -23,5 +23,9 @@ CREATE TABLE t (
 	KEY city (city)
 )ENGINE=InnoDB AUTO_INCREMENT=1;
 
+DROP USER custom@localhost;
+CREATE USER custom@localhost IDENTIFIED BY '123';
+GRANT ALL PRIVILEGES ON *.* TO custom@localhost;
+
 #INSERT INTO user(cellphone,nickname) values("18201032326","good");
 #INSERT INTO user(cellphone,nickname)  values("18801032327","well");

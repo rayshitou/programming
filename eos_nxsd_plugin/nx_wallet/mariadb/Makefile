@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-Wall -g -std=c++14
-DEPS=-lmariadb
+DEPS=-L/usr/lib64/mysql/ -lmysqlclient
 
 TARGET=gencode
  
@@ -17,7 +17,7 @@ VPATH = $(SUB_DIR)
 all: $(TARGET)  
  
 $(TARGET): $(OBJS)  
-	$(CC) $(CFLAGS) $(DEPS) -o $(TARGET) $(OBJS) 
+	$(CC) $(CFLAGS) $(DEPS) -o $(TARGET) $(OBJS) -lpthread
 
 %.o:%.cpp
 	$(CC) $(CFLAGS) -I$(INCLUDE_PATH) -c $< -o $@
