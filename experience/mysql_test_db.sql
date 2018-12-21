@@ -12,5 +12,16 @@ CREATE TABLE user(
 	  PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 COMMENT='用户信息表';
 
-INSERT INTO user(cellphone,nickname) values("18201032326","good");
-INSERT INTO user(cellphone,nickname)  values("18801032327","well");
+DROP TABLE IF EXISTS t;
+CREATE TABLE t (
+	id	int(11) AUTO_INCREMENT,
+	city	varchar(16) NOT NULL,
+	name	varchar(16) NOT NULL,
+	age	int(11) NOT NULL,
+	addr	varchar(128) DEFAULT NULL,
+	PRIMARY KEY (id),
+	KEY city (city)
+)ENGINE=InnoDB AUTO_INCREMENT=1;
+
+#INSERT INTO user(cellphone,nickname) values("18201032326","good");
+#INSERT INTO user(cellphone,nickname)  values("18801032327","well");
