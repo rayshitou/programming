@@ -2,9 +2,6 @@
 
 using namespace std;
 
-class Stack;
-ostream& operator<<(ostream& os, const Stack& st);
-			
 class Stack{
 	public:
 		Stack(int size):len(size),top(0) {
