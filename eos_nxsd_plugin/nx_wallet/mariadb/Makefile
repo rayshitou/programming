@@ -1,6 +1,6 @@
 CC=g++
-CFLAGS=-Wall -g -std=c++14
-DEPS=-L/usr/lib64/mysql/ -lmysqlclient
+CFLAGS=-Wall -g -std=c++11
+DEPS=-L/usr/local/lib64 -L/usr/lib64/mysql/ -lmysqlclient
 
 TARGET=gencode
  

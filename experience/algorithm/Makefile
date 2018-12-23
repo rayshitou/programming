@@ -4,14 +4,15 @@
 
 CXX = g++
 CXXFLAGS = -g -O2 -D_REENTRANT -Wall -std=c++11
+LIBS = -lpthread
 
 PROGS = testexe
-OBJ = lru_list.o
+OBJ = stack_array.o
 
 all:    ${PROGS}
 
 testexe: ${OBJ} 
-	${CXX} ${CFLAGS} -o $@ $^ 
+	${CXX} ${CFLAGS} -o $@ $^ ${LIBS}
 	mv ${PROGS} bin
 	mv ${OBJ} bin
 
